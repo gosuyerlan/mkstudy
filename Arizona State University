@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arizona State University - Полная информация</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --text-primary: #1a1a1a;
+            --text-secondary: #6e6e73;
+            --text-muted: #86868b;
+            --border: #e5e5e7;
+            --background: #f5f5f7;
+            --card-bg: #ffffff;
+            --accent: #FFC627;
+            --accent-secondary: #8C1D40;
+            --accent-hover: #FFD23F;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, #ffffff 0%, var(--background) 100%);
+            margin-bottom: 60px;
+        }
+        
+        .university-name {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .university-location {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .meta-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 20px;
+            background: var(--background);
+        }
+        
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 48px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--accent-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Data Section */
+        .data-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .info-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+        
+        /* Rankings */
+        .rankings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .ranking-item {
+            padding: 20px;
+            background: var(--background);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .ranking-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-secondary);
+            margin-bottom: 4px;
+        }
+        
+        .ranking-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        /* Schools List with Small Checkmarks */
+        .schools-list {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .school-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0;
+        }
+        
+        .school-check {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .school-check::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 7px;
+            border: solid var(--accent-secondary);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            top: 3px;
+            left: 5px;
+        }
+        
+        .school-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* Programs Table */
+        .programs-table {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            text-align: left;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .program-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .program-details {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        /* Key Features Section */
+        .features-section {
+            padding: 80px 20px;
+            background: var(--background);
+        }
+        
+        .features-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        
+        .features-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .features-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px 120px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+        }
+        
+        .feature-icon-wrapper {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            stroke: var(--accent-secondary);
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .feature-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .feature-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* Cost Section with Cards */
+        .cost-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cost-header {
+            margin-bottom: 64px;
+        }
+        
+        .cost-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .cost-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .cost-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .cost-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 320px;
+            padding: 48px 32px;
+            background: #ffffff;
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            text-align: center;
+        }
+        
+        .cost-card:nth-child(2) {
+            border-color: var(--accent-secondary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cost-card:nth-child(3) {
+            border-color: #e5e5e7;
+        }
+        
+        .cost-level {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+        
+        .cost-amount {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        
+        .cost-period {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        /* Requirements Section */
+        .requirements-section {
+            padding: 80px 20px;
+            background: var(--background);
+        }
+        
+        .requirements-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        
+        .requirements-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .requirements-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .requirements-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .req-column {
+            flex: 1;
+        }
+        
+        .req-column h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+        }
+        
+        .req-list {
+            list-style: none;
+        }
+        
+        .req-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .req-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent-secondary);
+            font-weight: 500;
+        }
+        
+        /* Campus Grid */
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .campus-card {
+            padding: 20px;
+            background: var(--background);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .campus-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .campus-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .footer-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-grid,
+            .cost-grid,
+            .campus-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .university-name {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="university-name">Arizona State University</h1>
+            <p class="university-location">Университет штата Аризона</p>
+            <div class="header-meta">
+                <span>Финикс, Аризона, США</span>
+                <span class="meta-dot"></span>
+                <span>Основан в 1885</span>
+                <span class="meta-dot"></span>
+                <span>#1 по инновациям 10 лет подряд</span>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">140K+</div>
+                    <div class="stat-label">Студентов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">#1</div>
+                    <div class="stat-label">Инновации США</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">150+</div>
+                    <div class="stat-label">Стран</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">550+</div>
+                    <div class="stat-label">Программ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="data-section">
+            <h2 class="section-title">Основная информация</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Официальное название</span>
+                    <span class="info-value">Arizona State University</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Местоположение</span>
+                    <span class="info-value">Финикс, Аризона, США</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Год основания</span>
+                    <span class="info-value">1885 (140 лет)</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Тип</span>
+                    <span class="info-value">Государственный исследовательский университет</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Общее количество студентов</span>
+                    <span class="info-value">140,000+</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Международные студенты</span>
+                    <span class="info-value">15,000+ из 150+ стран</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Кампусы</span>
+                    <span class="info-value">4 кампуса в столичном районе Финикса</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Партнер</span>
+                    <span class="info-value">Kaplan International Pathways</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="data-section">
+            <h2 class="section-title">Обзор университета</h2>
+            <p style="font-size: 16px; line-height: 1.8; color: var(--text-secondary);">
+                ASU занимает 1 место в США по инновациям 10 лет подряд, известен своим стремлением к инновациям и образованием, ориентированным на будущее. Расположенный в солнечном Финиксе с круглогодичной теплой погодой (3,872 часа солнечного света в год), ASU предлагает 550+ программ обучения и является лучшим государственным университетом среди иностранных студентов. Выпускники получают преимущество от связей с ведущими работодателями и карьерных возможностей в 5-м по величине городе США.
+            </p>
+        </div>
+
+        <!-- Rankings -->
+        <div class="data-section">
+            <h2 class="section-title">Рейтинги и достижения</h2>
+            <div class="rankings-grid">
+                <div class="ranking-item">
+                    <div class="ranking-value">#1</div>
+                    <div class="ranking-label">США Инновации (10 лет)</div>
+                </div>
+                <div class="ranking-item">
+                    <div class="ranking-value">#1</div>
+                    <div class="ranking-label">Государственный универ для иностранцев</div>
+                </div>
+                <div class="ranking-item">
+                    <div class="ranking-value">Топ 10</div>
+                    <div class="ranking-label">Мира связи студент-работодатель</div>
+                </div>
+                <div class="ranking-item">
+                    <div class="ranking-value">#9</div>
+                    <div class="ranking-label">США Информационные системы</div>
+                </div>
+                <div class="ranking-item">
+                    <div class="ranking-value">#13</div>
+                    <div class="ranking-label">США Бухгалтерский учет</div>
+                </div>
+                <div class="ranking-item">
+                    <div class="ranking-value">#27</div>
+                    <div class="ranking-label">США Бизнес</div>
+                </div>
+                <div class="ranking-item">
+                    <div class="ranking-value">#35</div>
+                    <div class="ranking-label">США Инженерия</div>
+                </div>
+                <div class="ranking-item">
+                    <div class="ranking-value">270+</div>
+                    <div class="ranking-label">Спортивных чемпионатов</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programs -->
+        <div class="data-section">
+            <h2 class="section-title">Академические программы</h2>
+            
+            <h3 style="font-size: 18px; margin: 24px 0 16px; color: var(--text-primary);">ASU-USA Pathways (Программы подготовки)</h3>
+            <div class="programs-table">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="program-name">ASU-USA Pathways - 1 семестр</div>
+                            <div class="program-details">Длительность: 4 месяца • GPA 2.75 • $22,000-25,000/год • Бизнес, Глобальный менеджмент, Искусства и науки</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="program-name">ASU-USA Pathways - 3 семестра</div>
+                            <div class="program-details">Длительность: 12 месяцев • GPA 2.50 • $35,000-40,000/год • Все направления включая инженерию</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="program-name">ASU-USA Earned Pathways</div>
+                            <div class="program-details">Длительность: 14-16 месяцев • Любой GPA (даже 0.00) • TOEFL 55+ • Включает 8-16 недель английского</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 style="font-size: 18px; margin: 24px 0 16px; color: var(--text-primary);">Направления обучения в Pathways</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Бизнес направление</span>
+                    <span class="info-value">Бизнес администрирование, Финансы, Маркетинг, Управление цепочками поставок, Международный бизнес</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Инженерное направление</span>
+                    <span class="info-value">Гражданское строительство, Компьютерные науки, Машиностроение, Электротехника</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Искусства и науки</span>
+                    <span class="info-value">Гуманитарные науки, Естественные науки, Социальные науки</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Прямое поступление</span>
+                    <span class="info-value">550+ программ бакалавриата • 4 года • $31,200-48,700/год</span>
+                </div>
+            </div>
+
+            <h3 style="font-size: 18px; margin: 24px 0 16px; color: var(--text-primary);">Дополнительные программы</h3>
+            <div class="programs-table">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="program-name">English Language Program</div>
+                            <div class="program-details">Длительность: 8-32 недели • $6,750 за 8-недельную сессию • От базового до продвинутого уровня</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="program-name">Transfer Admission</div>
+                            <div class="program-details">Для студентов с 24-64 кредитами • Перевод на 2-3 курс • GPA 2.50+ • TOEFL 61+</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Key Features Section -->
+        <div class="features-section">
+            <div class="features-header">
+                <h2 class="features-title">Почему выбрать ASU</h2>
+                <p class="features-subtitle">Университет будущего для амбициозных студентов</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                            <path d="M2 17L12 22L22 17" />
+                            <path d="M2 12L12 17L22 12" />
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3>#1 по инновациям</h3>
+                        <p>10 лет подряд лидер инноваций среди университетов США по версии U.S. News</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <rect x="3" y="7" width="18" height="12" rx="2" />
+                            <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" />
+                            <line x1="12" y1="11" x2="12" y2="15" />
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3>40,000+ стажировок</h3>
+                        <p>Карьерные услуги с доступом к тысячам возможностей трудоустройства</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M2 12h20" />
+                            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Глобальное сообщество</h3>
+                        <p>15,000+ международных студентов из 150+ стран мира</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Солнечный Финикс</h3>
+                        <p>3,872 часа солнца в год в 5-м по величине городе США</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advantages -->
+        <div class="data-section">
+            <h2 class="section-title">Ключевые преимущества</h2>
+            <div class="schools-list">
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">#1 в США по инновациям (U.S. News, 10 лет 2016-2025)</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">#1 государственный университет среди иностранных студентов</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">Топ 10 в мире по связям студент-работодатель</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">550+ программ бакалавриата и магистратуры</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">Преподаватели - лауреаты Нобелевской и Пулитцеровской премий</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">3,872 часа солнечного света в год в Финиксе</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">270+ спортивных чемпионатов и титулов</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">15,000+ иностранных студентов из 150+ стран</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Costs Section -->
+        <div class="cost-section">
+            <div class="cost-header">
+                <h2 class="cost-title">Стоимость обучения</h2>
+                <p class="cost-subtitle">Инвестиция в образование мирового класса</p>
+            </div>
+            
+            <div class="cost-cards-container">
+                <div class="cost-card">
+                    <div class="cost-level">Pathways</div>
+                    <div class="cost-amount">$22-40K</div>
+                    <div class="cost-period">в год</div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-level">Бакалавриат</div>
+                    <div class="cost-amount">$31-49K</div>
+                    <div class="cost-period">в год</div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-level">Английский</div>
+                    <div class="cost-amount">$6,750</div>
+                    <div class="cost-period">за 8 недель</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirements Section -->
+        <div class="requirements-section">
+            <div class="requirements-header">
+                <h2 class="requirements-title">Требования к поступлению</h2>
+                <p class="requirements-subtitle">Гибкие пути для всех уровней подготовки</p>
+            </div>
+            
+            <div class="requirements-container">
+                <div class="req-column">
+                    <h3>ASU-USA Pathways</h3>
+                    <ul class="req-list">
+                        <li>Любой GPA (даже 0.00) для Earned Pathways</li>
+                        <li>GPA 2.50 для 3-семестровой программы</li>
+                        <li>GPA 2.75 для 1-семестровой программы</li>
+                        <li>TOEFL 55 минимум</li>
+                        <li>Возраст от 16 лет</li>
+                    </ul>
+                </div>
+                <div class="req-column">
+                    <h3>Прямое поступление</h3>
+                    <ul class="req-list">
+                        <li>Минимум GPA 3.00 (шкала 4.00)</li>
+                        <li>TOEFL 61+ (некоторые программы выше)</li>
+                        <li>Диплом средней школы</li>
+                        <li>Академические рекомендации</li>
+                    </ul>
+                </div>
+                <div class="req-column">
+                    <h3>Магистратура</h3>
+                    <ul class="req-list">
+                        <li>Диплом бакалавра</li>
+                        <li>Конкурентный GPA (обычно 3.00+)</li>
+                        <li>Требования зависят от программы</li>
+                        <li>Опыт работы (варьируется)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Dates -->
+        <div class="data-section">
+            <h2 class="section-title">Даты начала обучения</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Основные наборы</span>
+                    <span class="info-value">Август, Январь</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Дополнительный набор</span>
+                    <span class="info-value">Май (для некоторых программ)</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Английский язык</span>
+                    <span class="info-value">Множество дат в течение года</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Прием заявок</span>
+                    <span class="info-value">Непрерывный прием (Rolling admissions)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campus Information -->
+        <div class="data-section">
+            <h2 class="section-title">Кампусы университета</h2>
+            <div class="campus-grid">
+                <div class="campus-card">
+                    <div class="campus-name">Tempe</div>
+                    <div class="campus-desc">Главный исторический кампус</div>
+                </div>
+                <div class="campus-card">
+                    <div class="campus-name">Downtown Phoenix</div>
+                    <div class="campus-desc">Инновации и бизнес</div>
+                </div>
+                <div class="campus-card">
+                    <div class="campus-name">West Valley</div>
+                    <div class="campus-desc">ASU-USA Pathways</div>
+                </div>
+                <div class="campus-card">
+                    <div class="campus-name">Polytechnic</div>
+                    <div class="campus-desc">Технологии и инженерия</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accommodation -->
+        <div class="data-section">
+            <h2 class="section-title">Проживание и питание</h2>
+            <p style="font-size: 16px; line-height: 1.8; color: var(--text-secondary);">
+                ASU предлагает проживание на кампусе с различными вариантами, включая общежития и апартаменты. Студенты пользуются современными удобствами, планами питания и удобным доступом к занятиям. Университет обеспечивает всестороннюю поддержку иностранных студентов, включая помощь по прибытии и программы культурной интеграции. Доступны варианты проживания на всех четырех кампусах с различными ценовыми категориями.
+            </p>
+        </div>
+
+        <!-- Scholarships -->
+        <div class="data-section">
+            <h2 class="section-title">Стипендии</h2>
+            <p style="font-size: 16px; line-height: 1.8; color: var(--text-secondary);">
+                Стипендии на основе академических достижений доступны для иностранных студентов. Более крупные стипендии для бакалавриата доступны в кампусах West Valley и Polytechnic. ASU предлагает различные виды финансовой помощи, включая стипендии за академические достижения, спортивные стипендии и гранты. Обратитесь в приемную комиссию за информацией о конкретных стипендиальных программах и критериях отбора.
+            </p>
+        </div>
+
+        <!-- Special Programs -->
+        <div class="data-section">
+            <h2 class="section-title">Особые программы и возможности</h2>
+            <div class="schools-list">
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">Карьерные услуги с доступом к 40,000+ стажировок и вакансий</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">Возможности работы на кампусе до 20 часов в неделю</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">Перевод для студентов с 24-64 кредитами из других универов</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">Гарантированное поступление после успешного завершения Pathways</span>
+                </div>
+                <div class="school-item">
+                    <div class="school-check"></div>
+                    <span class="school-text">1,000+ студенческих клубов и организаций</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-title">Arizona State University</div>
+            <p>Tempe, AZ 85287, USA</p>
+            <p>Официальный сайт: www.asu.edu | Партнер: Kaplan International Pathways</p>
+            <p style="margin-top: 16px;">Данные актуальны на 2025/26 учебный год</p>
+        </div>
+    </div>
+</body>
+</html>
